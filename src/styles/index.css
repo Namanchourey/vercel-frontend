@@ -1,0 +1,360 @@
+:root {
+    --bg-primary: #060608;
+    --bg-secondary: #0e0e11;
+    --bg-tertiary: #16161c;
+    --accent-primary: #6366f1;
+    --accent-secondary: #a855f7;
+    --text-primary: #f8fafc;
+    --text-secondary: #94a3b8;
+    --success: #10b981;
+    --danger: #ef4444;
+    --glass-bg: rgba(255, 255, 255, 0.03);
+    --glass-border: rgba(255, 255, 255, 0.08);
+    --glass-glow: rgba(99, 102, 241, 0.1);
+    --shadow-lg: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
+    --font-header: 'Plus Jakarta Sans', 'Outfit', sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    line-height: 1.5;
+    overflow-x: hidden;
+}
+
+h1,
+h2,
+h3,
+h4 {
+    font-family: var(--font-header);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+}
+
+button {
+    cursor: pointer;
+    border: none;
+    outline: none;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.glass {
+    background: var(--glass-bg);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--glass-border);
+    border-radius: 20px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.glass:hover {
+    border-color: rgba(255, 255, 255, 0.15);
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.hover-lift:hover {
+    transform: translateY(-4px) scale(1.01);
+    box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.5);
+}
+
+.gradient-text {
+    background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 0 10px rgba(168, 85, 247, 0.2));
+}
+
+.radial-glow {
+    position: relative;
+    overflow: hidden;
+}
+
+.radial-glow::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle at center, var(--glass-glow), transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.5;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+    color: white;
+    padding: 0.875rem 1.75rem;
+    border-radius: 14px;
+    font-weight: 600;
+    box-shadow: 0 8px 20px rgba(99, 102, 241, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 25px rgba(99, 102, 241, 0.4);
+    filter: brightness(1.1);
+}
+
+@keyframes shimmer {
+    0% {
+        background-position: -200% 0;
+    }
+
+    100% {
+        background-position: 200% 0;
+    }
+}
+
+.shimmer {
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    background-size: 200% 100%;
+    animation: shimmer 2s infinite;
+}
+
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg-primary);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--bg-tertiary);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #2d2d35;
+}
+
+.main-content {
+    padding-left: 260px;
+    transition: all 0.3s ease;
+}
+
+@media (max-width: 768px) {
+    .main-content {
+        padding-left: 0 !important;
+        padding-bottom: 80px;
+    }
+}
+
+/* 📱 Mobile Optimization */
+@media (max-width: 1024px) {
+    .social-container .bento-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+    }
+
+    .social-container .bento-grid>div {
+        grid-column: span 2 !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .social-container {
+        padding: 1.5rem 1rem !important;
+        padding-bottom: 100px !important;
+    }
+
+    .social-container h1 {
+        font-size: 2rem !important;
+    }
+
+    .social-container .bento-grid {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 1.5rem !important;
+    }
+
+    .social-container .bento-grid>div {
+        width: 100% !important;
+        grid-column: auto !important;
+    }
+
+    /* Friend Profile Modal Full Screen */
+    .social-modal-overlay {
+        padding: 0 !important;
+        background: var(--bg-primary) !important;
+        align-items: flex-start !important;
+    }
+
+    .social-modal-content.glass.radial-glow {
+        width: 100% !important;
+        max-width: 100% !important;
+        height: 100% !important;
+        max-height: 100% !important;
+        border-radius: 0 !important;
+        border: none !important;
+        margin: 0 !important;
+        overflow-y: auto !important;
+        padding: 1.5rem 1rem !important;
+        background: transparent !important;
+        box-shadow: none !important;
+    }
+
+    .modal-stats-mobile {
+        display: grid !important;
+        grid-template-columns: 1fr 1fr !important;
+        gap: 0.75rem !important;
+        padding: 1rem !important;
+    }
+
+    .modal-stats-mobile>div:last-child {
+        grid-column: span 2 !important;
+    }
+
+    .mini-stat-mobile {
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        gap: 0.5rem !important;
+        background: rgba(255, 255, 255, 0.03);
+        padding: 0.75rem;
+        border-radius: 12px;
+    }
+
+    .schedule-row-mobile {
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        gap: 0.75rem !important;
+    }
+
+    .schedule-row-mobile button {
+        width: 100% !important;
+        text-align: center !important;
+        justify-content: center !important;
+    }
+
+    /* Stack buttons in user rows */
+    .user-row-actions {
+        flex-direction: column !important;
+    }
+}
+
+/* 👤 Profile Page Mobile Optimization */
+@media (max-width: 1024px) {
+    .profile-container .bento-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+    }
+
+    .profile-container .bento-grid>div {
+        grid-column: span 2 !important;
+    }
+}
+
+@media (max-width: 640px) {
+    .profile-container {
+        padding: 1.5rem 1rem !important;
+        padding-bottom: 90px !important;
+    }
+
+    .profile-container .bento-grid {
+        grid-template-columns: 1fr !important;
+    }
+
+    .profile-container .bento-grid>div {
+        grid-column: span 1 !important;
+    }
+
+    .pr-form {
+        flex-direction: column !important;
+        align-items: stretch !important;
+        gap: 1rem !important;
+    }
+
+    .pr-form>div {
+        width: 100% !important;
+        flex: none !important;
+    }
+
+    .pr-form button {
+        width: 100% !important;
+        margin-top: 0.5rem !important;
+    }
+
+    .stats-overview {
+        grid-template-columns: 1fr !important;
+    }
+}
+
+/* 📅 Schedule Page Mobile Optimization */
+@media (max-width: 768px) {
+    .schedule-container {
+        padding: 1rem !important;
+        padding-bottom: 90px !important;
+    }
+
+    .day-selector::-webkit-scrollbar {
+        display: none;
+    }
+
+    .planner-card {
+        padding: 1.25rem !important;
+    }
+
+    .ex-main {
+        flex-direction: column !important;
+        align-items: stretch !important;
+        gap: 1rem !important;
+    }
+
+    .ex-stats {
+        justify-content: space-between !important;
+    }
+
+    .ex-stats>div {
+        flex: 1;
+    }
+
+    .ex-stats input {
+        width: 100% !important;
+        text-align: center;
+    }
+}
+
+/* 🏰 MyGym Page Mobile Optimization */
+@media (max-width: 1024px) {
+    .gym-container .bento-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+    }
+
+    .gym-container .bento-grid>div {
+        grid-column: span 2 !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .gym-container {
+        padding: 1.5rem 1rem !important;
+        padding-bottom: 90px !important;
+    }
+
+    .gym-container h1 {
+        font-size: 2rem !important;
+    }
+
+    .gym-container .bento-grid {
+        grid-template-columns: 1fr !important;
+    }
+
+    .gym-container .bento-grid>div {
+        grid-column: span 1 !important;
+    }
+
+    .gym-container .btn-primary,
+    .gym-container .glass>button {
+        width: 100% !important;
+        justify-content: center !important;
+    }
+}
