@@ -1,5 +1,6 @@
 import { create } from 'zustand'
 import axios from 'axios'
+const API_URL = import.meta.env.VITE_API_URL
 
 export const useAuthStore = create((set) => ({
     user: null,
@@ -10,7 +11,7 @@ export const useAuthStore = create((set) => ({
     login: async (email, password) => {
         set({ loading: true, error: null })
         try {
-            const res = await axios.post('/api/auth/login', { email, password })
+            const res = await axios.post('${API_URL}/api/auth/login', { email, password })
             localStorage.setItem('token', res.data.token)
             set({ user: res.data.user, token: res.data.token, loading: false })
             return true
@@ -23,7 +24,7 @@ export const useAuthStore = create((set) => ({
     register: async (name, email, password) => {
         set({ loading: true, error: null })
         try {
-            const res = await axios.post('/api/auth/register', { name, email, password })
+            const res = await axios.post('${API_URL}/api/auth/register', { name, email, password })
             localStorage.setItem('token', res.data.token)
             set({ user: res.data.user, token: res.data.token, loading: false })
             return true
@@ -45,7 +46,7 @@ export const useAuthStore = create((set) => ({
         set({ loading: true })
         try {
             axios.defaults.headers.common['x-auth-token'] = token
-            const res = await axios.get('/api/auth/user')
+            const res = await axios.get('${API_URL}/api/auth/user')
             set({ user: res.data, loading: false })
         } catch (err) {
             console.error('Auth check failed', err)
